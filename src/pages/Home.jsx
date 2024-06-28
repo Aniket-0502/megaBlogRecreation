@@ -7,7 +7,7 @@ import { Query } from 'appwrite';
 function Home() {
     const [posts, setPosts] = useState([])
     const userStatus = useSelector((state)=>state.auth.status)
-    const userIdfromStore = String(useSelector((state)=>state.auth.userData.$id))
+    let userIdfromStore = String(useSelector((state)=>state.auth.userData?.$id))
     useEffect(() => {
         // Only user's posts are visible on Home Page
         if (userIdfromStore) {
