@@ -18,7 +18,7 @@ export class Service {
     try {
       return await this.databases.createDocument(
         conf.appwriteDatabaseId,
-        conf.appwriteBucketId,
+        conf.appwriteCollectionId,
         slug,
         { title, content, featuredImage, status, userId }
       );
@@ -31,7 +31,7 @@ export class Service {
     try {
       return await this.databases.updateDocument(
         conf.appwriteDatabaseId,
-        conf.appwriteBucketId,
+        conf.appwriteCollectionId,
         slug,
         { title, content, featuredImage, status }
       );
@@ -44,7 +44,7 @@ export class Service {
     try {
       await this.databases.deleteDocument(
         conf.appwriteDatabaseId,
-        conf.appwriteBucketId,
+        conf.appwriteCollectionId,
         slug
       );
       return true;
@@ -67,7 +67,7 @@ export class Service {
     }
   }
 
-  async getPosts(queries = [Query.equal("status", "active")]) {
+  async getPosts(queries = [Query.equal("status", ["active"])]) {
     try {
       return await this.databases.listDocuments(
         conf.appwriteDatabaseId,
@@ -110,7 +110,7 @@ export class Service {
 
   getFilePreview(fileId) {
     try {
-      return this.document.bucket.getFilePreview(conf.appwriteBucketId, fileId);
+      return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
     } catch (error) {
       console.log("Appwrite error :: getFilePreview :: error -> ", error);
     }
