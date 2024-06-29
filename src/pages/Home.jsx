@@ -6,9 +6,6 @@ import { Query } from 'appwrite';
 import conf from '../conf/conf';
 
 function Home() {
-    console.log(conf.appwriteDatabaseId)
-    console.log(conf.appwriteBucketId)
-    console.log(conf.appwriteCollectionId)
     const [posts, setPosts] = useState([])
     const userStatus = useSelector((state)=>state.auth.status)
     let userIdfromStore = String(useSelector((state)=>state.auth.userData?.$id))
