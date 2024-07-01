@@ -113,7 +113,7 @@ function Home() {
                   >
                     {images.map((image, i) => (
                       <div
-                        className="carousel-item w-full flex-shrink-0"
+                        className="carousel-item w-full flex-shrink-0 mt-4"
                         key={i}
                       >
                         <img
