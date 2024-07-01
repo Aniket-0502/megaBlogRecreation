@@ -137,7 +137,7 @@ function Home() {
                 </div>
               </div>
             </div>
-            <div className="px-7 w-full h-[450px] grid place-content-center text-red-600">
+            <div className="px-7 mt-4 w-full h-[450px] grid place-content-center text-red-600">
               <div className="flex flex-col items-center">
                 <h2 className="font-bold text-4xl text-center font-playwriteDeGrund m-4">
                   Join Millions of Others

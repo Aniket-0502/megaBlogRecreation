@@ -9,8 +9,8 @@ function Footer() {
         <div className="-m-6 flex flex-wrap">
           <div className="w-[35%] p-6 md:w-1/2 lg:w-5/12">
             <div className="flex flex-col justify-between">
-              <div className="mb-4 inline-flex items-center">
-                <Logo width="75px" white="true" />
+              <div className=" inline-flex items-center">
+                <Logo white="true" />
               </div>
             </div>
           </div>
@@ -41,7 +41,7 @@ function Footer() {
                     className=" text-base font-medium  text-white hover:text-red-600 hover:underline decoration-wavy underline-offset-4"
                     to="/"
                   >
-                    Affiliate Program
+                    Press Kit
                   </Link>
                 </li>
                 <li>
@@ -49,7 +49,7 @@ function Footer() {
                     className=" text-base font-medium  text-white hover:text-red-600 hover:underline decoration-wavy underline-offset-4"
                     to="/"
                   >
-                    Press Kit
+                    About Us
                   </Link>
                 </li>
               </ul>
