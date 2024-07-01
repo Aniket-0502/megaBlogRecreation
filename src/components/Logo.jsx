@@ -6,7 +6,7 @@ function Logo({white = false}) {
   return (
     <div className='flex items-center'>
       <div className='m-2'>
-        <img className='h-12 w-12' src="../../../favicon/android-chrome-192x192.png" alt="Logo" />
+        <img className='h-12 w-12' src="..\assets\android-chrome-192x192.png" alt="Logo" />
       </div>
       <div>
         <p className={`font-playwriteIt text-[24px] ${reqWhite? "text-white" : "text-black"}`}>BlogVerse</p>
