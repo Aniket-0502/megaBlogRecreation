@@ -48,7 +48,7 @@ function Home() {
                             </p>
                             </div>
                             <div>
-                                <div className='flex items-center overflow-hidden '>
+                                <div className='flex items-center'>
                                     <img className = 'h-[243px] w-[320px] rotate-12 z-20' src="https://images.pexels.com/photos/2174656/pexels-photo-2174656.jpeg" alt="first" />
                                     <img className = 'h-[243px] w-[335px] rotate-[-20deg] z-10' src="https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg" alt="second" />
                                     <img className = 'h-[243px] w-[295px] rotate-[18deg] z-0' src="https://images.pexels.com/photos/450441/pexels-photo-450441.jpeg" alt="third" />
