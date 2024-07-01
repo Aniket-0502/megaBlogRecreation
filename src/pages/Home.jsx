@@ -3,10 +3,12 @@ import appwriteService from "../appwrite/config";
 import { Container, PostCard } from "../components";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
 function Home() {
   const [posts, setPosts] = useState([]);
   const isLoggedIn = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
+
   useEffect(() => {
     appwriteService.getPosts().then((posts) => {
       if (posts) {
@@ -38,15 +40,16 @@ function Home() {
   const nextSlide = () => {
     setIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
+
   if (!isLoggedIn) {
     return (
       <div className="w-full">
         <Container>
           <div>
-            <div className=" py-8 m-6 mb-[70px] flex flex-wrap justify-center items-center">
-              <div className="">
+            <div className="py-8 m-6 mb-[70px] flex flex-wrap justify-center items-center">
+              <div>
                 <img
-                  className=" hidden md:block h-[436px] w-[655px] rounded-full shadow-slate-400"
+                  className="hidden md:block h-[436px] w-[655px] rounded-full shadow-slate-400"
                   src="https://images.pexels.com/photos/8367812/pexels-photo-8367812.jpeg"
                   alt="Start Writing Today"
                 />
@@ -75,36 +78,35 @@ function Home() {
                 </div>
               </div>
             </div>
-            <div className="bg-red-500 mt-4 flex flex-wrap justify-evenly items-end lg:items-center w-full h-[550px] ">
-              <div className="font-semibold mx-7">
+            <div className="bg-red-500 mt-4 flex flex-wrap justify-evenly items-end lg:items-center w-full h-[550px] relative overflow-hidden">
+              <div className="font-semibold mx-7 z-20">
                 <h2 className="text-3xl text-white font-playwriteDeGrund my-5 text-center">
                   Hang onto your memories
                 </h2>
-
                 <p className="text-white text-center w-[300px] font-playwriteDeGrund">
                   Save the moments that matter, BlogVerse helps you store
                   thousands of posts and photos
                 </p>
               </div>
-              <div>
-                <div className="flex items-center mr-7">
+              <div className="relative z-10 flex items-center">
+                <div className="hidden lg:flex lg:items-center lg:justify-center lg:relative">
                   <img
-                    className="hidden lg:block h-[243px] w-[320px] rotate-12 z-20"
+                    className="h-[243px] w-[320px] rotate-12 z-20"
                     src="https://images.pexels.com/photos/2174656/pexels-photo-2174656.jpeg"
                     alt="first"
                   />
                   <img
-                    className="hidden lg:block h-[243px] w-[335px] rotate-[-20deg] z-10"
+                    className="h-[243px] w-[335px] rotate-[-20deg] z-10"
                     src="https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg"
                     alt="second"
                   />
                   <img
-                    className="hidden lg:block h-[243px] w-[295px] rotate-[18deg] z-0"
+                    className="h-[243px] w-[295px] rotate-[18deg] z-0"
                     src="https://images.pexels.com/photos/450441/pexels-photo-450441.jpeg"
                     alt="third"
                   />
                 </div>
-                <div className="lg:hidden carousel overflow-hidden relative w-full">
+                <div className="lg:hidden carousel overflow-hidden relative w-full h-[100%]">
                   <div
                     className="carousel-inner flex transition-transform duration-500 ease-in-out"
                     style={{ transform: `translateX(-${index * 100}%)` }}
@@ -117,7 +119,7 @@ function Home() {
                         <img
                           src={image}
                           alt={`Image ${i + 1}`}
-                          className="w-[100vw] h-[62vh] mt-4"
+                          className="w-full h-full object-cover"
                         />
                       </div>
                     ))}
@@ -159,19 +161,19 @@ function Home() {
       </div>
     );
   }
+
   return (
-    // <div className='w-full py-8'>
-    //     <Container>
-    //         <div className='flex flex-wrap'>
-    //             {posts.map((post) => (
-    //                 <div key={post.$id} className='p-2 w-1/4'>
-    //                     <PostCard {...post} />
-    //                 </div>
-    //             ))}
-    //         </div>
-    //     </Container>
-    // </div>
-    <div>Home After Login</div>
+    <div className="w-full py-8">
+      <Container>
+        <div className="flex flex-wrap">
+          {posts.map((post) => (
+            <div key={post.$id} className="p-2 w-full md:w-1/4">
+              <PostCard {...post} />
+            </div>
+          ))}
+        </div>
+      </Container>
+    </div>
   );
 }
 
