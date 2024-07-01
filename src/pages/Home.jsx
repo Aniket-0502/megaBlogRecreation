@@ -37,7 +37,7 @@ function Home() {
                                 </div>
                             </div>
                         </div>
-                        <div className='bg-red-500 mt-4 flex justify-evenly items-center px-7 w-full h-[550px] '>
+                        <div className='bg-red-500 mt-4 flex flex-wrap justify-evenly items-center px-7 w-full h-[550px] '>
                             <div className='font-semibold'>
                                 <h2 className='text-3xl text-white font-playwriteDeGrund my-5 text-center'>
                                     Hang onto your memories
@@ -78,16 +78,19 @@ function Home() {
         )
     }
     return (
-        <div className='w-full py-8'>
-            <Container>
-                <div className='flex flex-wrap'>
-                    {posts.map((post) => (
-                        <div key={post.$id} className='p-2 w-1/4'>
-                            <PostCard {...post} />
-                        </div>
-                    ))}
-                </div>
-            </Container>
+        // <div className='w-full py-8'>
+        //     <Container>
+        //         <div className='flex flex-wrap'>
+        //             {posts.map((post) => (
+        //                 <div key={post.$id} className='p-2 w-1/4'>
+        //                     <PostCard {...post} />
+        //                 </div>
+        //             ))}
+        //         </div>
+        //     </Container>
+        // </div>
+        <div>
+            Home After Login
         </div>
     )
 }
