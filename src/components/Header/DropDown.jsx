@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import LogoutBtn from "./LogoutBtn";
+
 const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
 

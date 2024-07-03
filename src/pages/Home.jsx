@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import appwriteService from "../appwrite/config";
 import { Container, PostCard } from "../components";
+import SlidingPosts from "../components/SlidingPosts";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import HomePagePostCard from "../components/HomePagePostCard";
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -12,7 +14,7 @@ function Home() {
   useEffect(() => {
     appwriteService.getPosts().then((posts) => {
       if (posts) {
-        setPosts(posts.documents);
+        setPosts(posts.documents.reverse());
       }
     });
   }, []);
@@ -39,6 +41,12 @@ function Home() {
 
   const nextSlide = () => {
     setIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
+  const [inputVal, setInputVal] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setInputVal("");
   };
 
   if (!isLoggedIn) {
@@ -162,7 +170,105 @@ function Home() {
     );
   }
 
-  return <div className="w-full py-8">Home After Login</div>;
+  return (
+    <div className="w-full">
+      <Container>
+        <div>
+          <div className="py-8 m-6 mb-[70px] flex flex-wrap justify-center items-center">
+            <div>
+              <img
+                className="hidden md:block h-[436px] w-[655px] rounded-full shadow-slate-400"
+                src="https://images.pexels.com/photos/8367812/pexels-photo-8367812.jpeg"
+                alt="Start Writing Today"
+              />
+              <img
+                className="md:hidden h-[256px] w-[256px] rounded-full shadow-slate-400 object-fill"
+                src="https://images.pexels.com/photos/8367812/pexels-photo-8367812.jpeg"
+                alt="Start Writing Today"
+              />
+            </div>
+            <div className="flex flex-col">
+              <div className="text-center text-[35px] lg:text-right lg:text-[70px]">
+                Write Your
+              </div>
+              <div className="text-center text-[35px] lg:text-right lg:text-[70px] font-bold gradient-text">
+                Article
+              </div>
+              <div className="text-center text-[35px] lg:text-right lg:text-[70px]">
+                here
+              </div>
+              <div className="grid place-content-center lg:place-content-end mt-[20px]">
+                <button onClick={() => navigate("/add-post")}>
+                  <div className="bg-red-500 font-playwriteDeGrund rounded-full text-center p-3 w-[140px] text-white">
+                    Add Post
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="h-[80vh] bg-cover bg-center bg-[url('https://res.cloudinary.com/dhkl5zhml/image/upload/v1719978497/3_q1baly.png')] flex justify-evenly items-center">
+            <div className="flex flex-col ml-[195px] justify-center mr-5">
+              <div className="font-semibold text-[90px]">
+                <div>Latest</div>
+                <div className="text-white">Articles</div>
+                <div>Here</div>
+              </div>
+              <div className="ml-8">
+                <button onClick={() => navigate("/all-posts")}>
+                  <div className="bg-white p-4 shadow-md text-center text-orange-500 rounded-full hover:bg-orange-600 hover:text-white">
+                    See All Articles
+                  </div>
+                </button>
+              </div>
+            </div>
+            <div>
+              <div className="flex">
+                <HomePagePostCard {...posts[0]} />
+                <HomePagePostCard {...posts[1]} />
+              </div>
+            </div>
+          </div>
+          <div className="p-10 bg-gray-100 flex justify-center items-center">
+            <div className="flex bg-white rounded-2xl w-[67vw] mx-4">
+              <div className="w-[35%]">
+                <img
+                  className="h-[60vh] rounded-2xl"
+                  src="https://res.cloudinary.com/dhkl5zhml/image/upload/v1719976199/Group_1000002134_ulmxjp.png"
+                  alt="design"
+                />
+              </div>
+              <div className="grid place-content-center">
+                <div className="font-bold text-[48px]">Subscribe</div>
+                <div className="text-gray-500 text-base w-[295px]">
+                  Subscribe to our newsletter and get upto 40% off on exclusive
+                  services
+                </div>
+                <form
+                  onSubmit={handleSubmit}
+                  className="p-2 bg-gradient-to-b from-orange-600 to-orange-400 flex mt-10 justify-between rounded-3xl"
+                >
+                  <input
+                    className="rounded-3xl p-2 mr-2"
+                    type="text"
+                    placeholder="Enter Email Address"
+                    value={inputVal}
+                    onInput={(e) => setInputVal(e.target.value)}
+                  />
+                  <div>
+                    <button type="submit">
+                      <div className="bg-orange-600 text-white rounded-3xl p-3 font-playwriteDeGrund text-sm hover:bg-orange-400">
+                        SUBSCRIBE
+                      </div>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </div>
+  );
 }
 
 export default Home;
